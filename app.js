@@ -8,12 +8,17 @@ new Vue({
     movies: [],
     filteredMovies: [],
     searchMoives: "",
+    movieDetail: {},
   },
   methods: {
     handleSearchClicked(event) {
       event.preventDefault()
       const keyword = this.searchMoives.trim().toLowerCase()
       this.filteredMovies = this.movies.filter(movie => movie.title.toLowerCase().includes(keyword))
+    },
+    detail(movie) {
+      this.movieDetail = movie
+      console.log(this.movieDetail)
     }
   },
   created() {
@@ -28,6 +33,7 @@ new Vue({
           ...movie,
           image: POSTER_URL + movie.image
         }));
+        console.log(this.movies)
         this.filteredMovies = this.movies.map(item => item);
       })
       .catch((error) => console.log(error));
